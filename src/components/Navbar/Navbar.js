@@ -42,7 +42,6 @@ const Wrap = styled.div`
     z-index: 1;
     width: 17.5vw;
     height: 100vh;
-    border: 2px solid red;
 
     nav {
         width: 0%;
@@ -81,11 +80,48 @@ const Wrap = styled.div`
         z-index: 4;
         border: none;
         padding: .5rem 1rem;
+        cursor: pointer;
+    }
+    @media(max-width:1200px){
+        a{
+            font-size: 2.2rem;
+        }
+        button {
+            font-size: 3.2rem;
+        }
+    }
+    @media(max-width: 991px){
+        width: 50vw;
+        .btnBox{
+            margin: 0
+        }
+        a{
+            font-size: 2.2rem;
+        }
+        button {
+            font-size: 3rem;
+        }
+    }
+    @media(max-width: 767px){
+        a{
+            font-size: 1.9rem;
+        }
+        button {
+            font-size: 2.8rem;
+        }
+    }
+    @media(max-width: 575px){
+        a{
+            font-size: 2.4rem;
+        }
+        button {
+            font-size: 2.4rem;
+        }
     }
 `
 
 const Navbar = () => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({ paused: true });
 
     useEffect(() => {
         tl.to('nav, .btnBox', .5, {
@@ -103,14 +139,14 @@ const Navbar = () => {
             display: "none",
             delay: -.1
         })
-    }, []);
+    });
 
 
     return (
         <Wrap>
             <div className="btnBox">
-                <button className="close"></button>
-                <button className="open"></button>
+                <button className="close" onClick={() => tl.reverse()}>close</button>
+                <button className="open" onClick={() => tl.play()}>open</button>
             </div>
             <nav>
                 <ul>
